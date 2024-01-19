@@ -85,6 +85,11 @@ def findDrivePath():
     directory += subs[0] + "/"
     return directory
 
+#Counts the number of files already in the USB drive to determine what the next ID should be
+def createIdNum():
+    NUM_TOTAL_FILES = len(os.listdir(findDrivePath()))
+    idNum = NUM_TOTAL_FILES + 1
+    return idNum
 
 while True:
     buttonLED.pulse()
@@ -171,7 +176,7 @@ while True:
             print("capturing")
             buttonLED.on()
             random.seed()
-            id = random.randint(10000, 99999)
+            id = createIdNum()
             c.delete('all')
             img2 = ImageTk.PhotoImage(Image.open("/home/pi/Desktop/ShadowScopeImages/VideoRecorded.png"))
             c.create_image(105, 95, anchor=NW, image=img2)
