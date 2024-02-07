@@ -77,19 +77,22 @@ c = Canvas(dialogWindow, height=470, width=300, bg='white')
 c.pack(expand=YES, fill=BOTH)
 
 
-# Finds the name of the directory where removable drives are stored and returns the file path.
-# Would be better to do this with a function like os.listmounts() but that doesn't work in Unix. Will work as long as file structure is maintained between systems
+# Finds the name of the directory where removable drives are stored and returns the file path. Would be better to do
+# this with a function like os.listmounts() but that doesn't work in Unix. Will work as long as file structure is
+# maintained between systems
 def findDrivePath():
     directory = "/media/pi/"
     subs = os.listdir(directory)
     directory += subs[0] + "/"
     return directory
 
-#Counts the number of files already in the USB drive to determine what the next ID should be
+
+# Counts the number of files already in the USB drive to determine what the next ID should be
 def createIdNum():
     NUM_TOTAL_FILES = len(os.listdir(findDrivePath()))
     idNum = NUM_TOTAL_FILES + 1
     return idNum
+
 
 while True:
     buttonLED.pulse()
@@ -119,12 +122,12 @@ while True:
     dialogWindow.deiconify()
     previousImageNumber = -1
     while True:
+
         inactive = inactive + 1
         print(inactive)
         if inactive >= 200000:
             inactive = 0
             break
-
 
         if imageNumber != previousImageNumber:
             if imageNumber == 0:
@@ -215,4 +218,3 @@ while True:
 # camera.capture('/home/pi/Pictures/%s.jpg' % photonumber);
 # print("photo taken");
 # photonumber = photonumber + 1
-
