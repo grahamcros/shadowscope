@@ -125,6 +125,7 @@ while True:
             inactive = 0
             break
 
+
         if imageNumber != previousImageNumber:
             if imageNumber == 0:
                 c.delete('all')
